@@ -1,0 +1,205 @@
+<!-- 
+
+Zadanie 2
+
+Kod HTML z poprzedniego zadania otrzymał style CSS. Wygląda teraz jak na załączonych zrzutach ekranu (pliki polecenie1.png, polecenie2.png).
+Stwórz style CSS by Twoja strona wyglądała podobnie. Nie musi być identycznie, ale:
+
+- Treść strony jest scrollowana (zrzuty ekranu przedstawiają górę i dół treści)
+- Strona jest wyśrodkowana
+- Lewa kolumna strony jest półprzezroczysta (kolory i obraz w tle - dowolne)
+- Stopka jest wyśrodkowana
+- Inny kolor na główne linki nawigacyjne, inny na podkategorie
+- Linkiem jest cały prostokąt na liście nawigacji, a nie tylko tekst
+- Delikatny efekt (zmiana przezroczystości) pojawia się gdy najedziemy myszą na element listy
+- Formularz mieści się w 2 kolumnach
+- Tabelka ma szerokość jak cała kolumna z treścią
+- Co drugi wiersz tabelki ma inny kolor
+- Stopka ma wyśrodkowany tekst
+
+-->
+
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIN stronka</title>
+
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="./main.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../favicon/safari-pinned-tab.svg"
+      color="#003543"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#001e26" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="appLayoutGrid">
+        <div id="appNav">
+          <a class="nav-item" href="#">link</a>
+          <a class="nav-item nav-subitem" href="#">link2</a>
+          <a class="nav-item nav-subitem" href="#">link2</a>
+          <a class="nav-item nav-subitem" href="#">link2</a>
+          <a class="nav-item" href="#">link2</a>
+          <a class="nav-item" href="#">link3</a>
+        </div>
+
+        <div id="appContent">
+          <div class="header">title 1</div>
+
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+            corporis nostrum culpa? Vero laboriosam reprehenderit magnam
+            eveniet! Deserunt, repellat dolores, est at accusamus vitae culpa
+            obcaecati quas illo sed dolorem! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Atque, quaerat. Eius dolorum natus
+            fugiat eum quo voluptatem doloremque doloribus voluptatibus! Nihil
+            magnam accusantium tempora recusandae iure odio ipsa aperiam
+            impedit.
+          </div>
+
+          <div class="img-container">
+            <img
+              class="nuxt3-nitro-engine-img"
+              src="../assets/nuxt3-nitro-engine.svg"
+              alt="Nuxt 3 Nitro Engine"
+            />
+          </div>
+
+          <div class="subheader">subtitle</div>
+
+          <div class="text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
+            consectetur dolores nulla corrupti mollitia laudantium iusto rem
+            repudiandae et fugiat fuga ipsam ducimus est sequi, eum numquam
+            suscipit molestias ex. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Maxime enim, optio ipsa qui veritatis, dolore
+            quis, sunt incidunt atque cupiditate voluptates labore. Architecto
+            culpa blanditiis, dignissimos nemo in hic cupiditate.
+          </div>
+
+          <div class="subheader">subtitle</div>
+
+          <div class="text">lorem ipsum</div>
+
+          <div class="header">title 2</div>
+
+          <div class="text">lorem ipsum</div>
+
+          <form class="form" action="#" method="post">
+            <div class="form__name">
+              <div>
+                <label class="lead" for="name">Imię i nazwisko</label>
+              </div>
+              <input
+                class="form__name__input"
+                type="text"
+                name="name"
+                placeholder="imię i nazwisko"
+              />
+            </div>
+
+            <div class="form__description">
+              <div>
+                <label class="lead" for="description">Opis</label>
+              </div>
+              <textarea
+                class="form__description__textarea"
+                name="description"
+                placeholder="wpisz coś o sobie"
+              ></textarea>
+            </div>
+
+            <div class="form__age">
+              <div>
+                <label class="lead" for="age">Wiek</label>
+              </div>
+              <select name="age">
+                <option selected>wybierz...</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+            </div>
+
+            <div class="form__options">
+              <div class="lead">Opcja</div>
+              <div>
+                <input type="radio" name="option" value="option1" />
+                <label for="option1">a</label>
+              </div>
+              <div>
+                <input type="radio" name="option" value="option2" />
+                <label for="option2">b</label>
+              </div>
+              <div>
+                <input type="radio" name="option" value="option3" />
+                <label for="option3">c</label>
+              </div>
+            </div>
+
+            <button class="form__submit" type="submit">wyślij</button>
+          </form>
+
+          <div class="grid-table">
+            <div class="grid-table__header">col1</div>
+            <div class="grid-table__header">col2</div>
+            <div class="grid-table__header">col3</div>
+
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+            <div>11</div>
+            <div>12</div>
+            <div>13</div>
+          </div>
+        </div>
+
+        <div id="appFooter">
+          <div>sample text 1</div>
+
+          <div>sample text 2</div>
+
+          <div>sample text 3</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

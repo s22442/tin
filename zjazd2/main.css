@@ -1,0 +1,253 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+
+  --color-primary: #00dc82;
+  --color-secondary: #003543;
+  --color-text: #fff;
+  --color-dark: #001e26;
+  --color-dark-translucent: #001e2699;
+  --color-light: #012a35;
+  --color-lighter: #255461;
+  --color-light-translucent: #012a3599;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: url("../assets/desert-road-green.jpg") center / cover no-repeat
+    fixed;
+}
+
+#appLayoutGrid {
+  width: 90%;
+  height: 99%;
+  transition: width 200ms;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 15% 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "app-nav app-content"
+    "app-footer app-footer";
+}
+
+#appLayoutGrid > * {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+#appNav {
+  grid-area: app-nav;
+  background: var(--color-light-translucent);
+  backdrop-filter: blur(2px);
+}
+
+.nav-item {
+  display: block;
+  line-height: 2;
+  padding-left: 5%;
+  font-size: 1.25em;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-dark);
+  color: var(--color-text);
+  background: var(--color-lighter);
+  transition: all 200ms;
+}
+
+.nav-item:hover {
+  color: var(--color-primary);
+  background: var(--color-dark-translucent);
+}
+
+.nav-subitem {
+  padding-left: 15%;
+  font-weight: 500;
+  background: var(--color-secondary);
+}
+
+#appContent {
+  grid-area: app-content;
+  background: var(--color-light);
+  overflow: hidden auto;
+  padding: 0 20px 30px 20px;
+}
+
+#appContent .header {
+  color: var(--color-primary);
+  font-size: 4rem;
+  line-height: 2.5;
+}
+
+#appContent .subheader {
+  color: var(--color-text);
+  font-size: 3rem;
+  line-height: 2;
+}
+
+#appContent .text {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#appContent .img-container {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+#appContent .img-container > img {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+}
+
+#appContent .form {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 30px 20% 15px 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  column-gap: 15%;
+  row-gap: 10px;
+  grid-template-areas:
+    "name age"
+    "description options"
+    "description submit";
+}
+
+#appContent .form .lead {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+#appContent .form .form__name {
+  grid-area: name;
+}
+
+#appContent .form .form__name .form__name__input {
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--color-dark);
+}
+
+#appContent .form .form__description {
+  grid-area: description;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#appContent .form .form__description .form__description__textarea {
+  flex-grow: 1;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  color: var(--color-dark);
+}
+
+#appContent .form .form__name .form__name__input,
+#appContent .form .form__description .form__description__textarea {
+  outline: none;
+  border: 1px solid var(--color-dark);
+}
+
+#appContent .form .form__name .form__name__input:focus,
+#appContent .form .form__description .form__description__textarea:focus {
+  outline: none;
+}
+
+#appContent .form .form__age {
+  grid-area: age;
+}
+
+#appContent .form .form__options {
+  grid-area: options;
+}
+
+#appContent .form .form__submit {
+  grid-area: submit;
+  place-self: start;
+  color: var(--color-dark);
+  padding: 0 5px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#appContent .grid-table {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 2px;
+}
+
+#appContent .grid-table > * {
+  min-width: 0;
+  min-height: 0;
+  font-size: 1rem;
+  line-height: 3;
+  color: var(--color-text);
+  text-align: center;
+}
+
+#appContent .grid-table > *:nth-child(6n + 4),
+#appContent .grid-table > *:nth-child(6n + 5),
+#appContent .grid-table > *:nth-child(6n + 6) {
+  background: var(--color-secondary);
+}
+
+#appContent .grid-table .grid-table__header {
+  background: var(--color-lighter);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+#appFooter {
+  grid-area: app-footer;
+  background: var(--color-dark);
+  text-align: center;
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 2;
+  transition: line-height 200ms;
+}
+
+@media (max-width: 960px) {
+  :root {
+    font-size: 15px;
+  }
+
+  #appLayoutGrid {
+    width: 96%;
+  }
+
+  #appContent .form {
+    padding: 30px 10px 15px 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 10rem auto auto;
+    column-gap: 0;
+    row-gap: 10px;
+    grid-template-areas:
+      "name"
+      "age"
+      "description"
+      "options"
+      "submit";
+  }
+
+  #appFooter {
+    line-height: 1.5;
+  }
+}
