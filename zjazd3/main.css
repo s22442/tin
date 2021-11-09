@@ -238,7 +238,7 @@
 
 #appContent .grid-table {
   display: grid;
-  grid-template-columns: repeat(15, minmax(70px, 1fr));
+  grid-template-columns: repeat(20, minmax(70px, 1fr));
   grid-auto-rows: auto;
   color: var(--color-black);
   overflow: auto;
