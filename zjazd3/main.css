@@ -49,6 +49,8 @@
   padding: 10px;
   display: flex;
   gap: 10px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
   z-index: 1;
 }
 
@@ -236,9 +238,10 @@
 
 #appContent .grid-table {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(15, minmax(70px, 1fr));
   grid-auto-rows: auto;
   color: var(--color-black);
+  overflow: auto;
 }
 
 #appContent .grid-table > * {
@@ -261,6 +264,8 @@
   gap: 1px;
   background: var(--color-dark);
   border-top: 10px solid var(--color-light);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
 }
 
 #appFooter > * {

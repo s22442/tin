@@ -186,44 +186,33 @@ Gdyby tabelka na stronie posiadała więcej kolumn, mogłaby nie zmieścić się
               <div class="grid-table__header">col4</div>
               <div class="grid-table__header">col5</div>
               <div class="grid-table__header">col6</div>
-
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
-              <div>11</div>
-              <div>12</div>
-              <div>13</div>
-              <div>14</div>
-              <div>15</div>
-              <div>16</div>
+              <div class="grid-table__header">col7</div>
+              <div class="grid-table__header">col8</div>
+              <div class="grid-table__header">col9</div>
+              <div class="grid-table__header">col10</div>
+              <div class="grid-table__header">col11</div>
+              <div class="grid-table__header">col12</div>
+              <div class="grid-table__header">col13</div>
+              <div class="grid-table__header">col14</div>
+              <div class="grid-table__header">col15</div>
             </div>
+
+            <script>
+              const GRID_CHILD_COUNT = 15 * 7;
+
+              const range = Array.from(
+                { length: GRID_CHILD_COUNT },
+                (_, i) => i + 1
+              );
+
+              const gridTable = document.querySelector(".grid-table");
+
+              for (const i of range) {
+                const div = document.createElement("div");
+                div.innerHTML = i;
+                gridTable.appendChild(div);
+              }
+            </script>
           </div>
         </div>
 
