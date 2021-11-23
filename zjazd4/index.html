@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIN stronka</title>
+
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="./main.js"></script>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../favicon/safari-pinned-tab.svg"
+      color="#003543"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#001e26" />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h1>Zadanie 1.</h1>
+
+        <div class="text">
+          Napisz funkcję, sprawdzającą, czy dane trzy liczby tworzą „trójkę
+          pitagorejską” (uwaga – liczby nie muszą być podane w kolejności
+          rosnącej)
+        </div>
+
+        <label for="exerciseInput1A">a:</label>
+        <input type="number" name="exerciseInput1A" />
+
+        <label for="exerciseInput1B">b:</label>
+        <input type="number" name="exerciseInput1B" />
+
+        <label for="exerciseInput1C">c:</label>
+        <input type="number" name="exerciseInput1C" />
+
+        <div class="btn" onclick="printExercise1()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 2.</h1>
+
+        <div class="text">
+          Napisz funkcję wypisującą wszystkie liczby z przedziału a-b, podzielne
+          przez c
+        </div>
+
+        <label for="exerciseInput2A">a:</label>
+        <input type="number" name="exerciseInput2A" />
+
+        <label for="exerciseInput2B">b:</label>
+        <input type="number" name="exerciseInput2B" />
+
+        <label for="exerciseInput2C">c:</label>
+        <input type="number" name="exerciseInput2C" />
+
+        <div class="btn" onclick="printExercise2()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 3.</h1>
+
+        <div class="text">
+          Napisz funkcję wypisującą w konsoli tabliczkę mnożenia o boku podanym
+          jako parametr
+        </div>
+
+        <label for="exerciseInput3">x:</label>
+        <input type="number" name="exerciseInput3" />
+
+        <div class="btn" onclick="printExercise3()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 4.</h1>
+
+        <div class="text">
+          Napisz funkcję wypisującą w konsoli ciąg Fibonacciego o długości
+          podanej jako parametr
+        </div>
+
+        <label for="exerciseInput4">x:</label>
+        <input type="number" name="exerciseInput4" />
+
+        <div class="btn" onclick="printExercise4()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 5.</h1>
+
+        <div class="text">Narysuj choinkę o podanej wysokości</div>
+
+        <label for="exerciseInput5">h:</label>
+        <input type="number" name="exerciseInput5" />
+
+        <div class="btn" onclick="printExercise5()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 6.</h1>
+
+        <div class="text">
+          Narysuj choinkę nocą o podanej wysokości (szerokość jest tu nieco
+          większa niż wysokość)
+        </div>
+
+        <label for="exerciseInput6">h:</label>
+        <input type="number" name="exerciseInput6" />
+
+        <div class="btn" onclick="printExercise6()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 7.</h1>
+
+        <div class="text">
+          Napisz funkcję liczącą pole wybranej figury (prostokąt, trapez,
+          równoległobok, trójkąt) z wykorzystaniem instrukcji switch. Każda
+          figura powinna mieć osobną funkcję do liczenia pola.
+        </div>
+
+        <div>
+          <label for="exerciseInput7a">arg1:</label>
+          <input type="number" name="exerciseInput7a" />
+
+          <label for="exerciseInput7b">arg2:</label>
+          <input type="number" name="exerciseInput7b" />
+
+          <label for="exerciseInput7c">arg3:</label>
+          <input type="number" name="exerciseInput7c" />
+        </div>
+
+        <div style="padding: 10px 0 0 0">
+          <input
+            id="rectangle1"
+            type="radio"
+            name="figure1"
+            value="rectangle"
+            checked
+          />
+          <label for="rectangle1">Rectangle</label>
+
+          <input
+            id="parallelogram1"
+            type="radio"
+            name="figure1"
+            value="parallelogram"
+          />
+          <label for="parallelogram1">Parallelogram</label>
+
+          <input
+            id="trapezium1"
+            type="radio"
+            name="figure1"
+            value="trapezium"
+          />
+          <label for="trapezium1">Trapezium</label>
+
+          <input id="triangle1" type="radio" name="figure1" value="triangle" />
+          <label for="triangle1">Triangle</label>
+        </div>
+
+        <div class="btn" onclick="printExercise7()">Wyświetl w konsoli</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 8.</h1>
+
+        <div class="text">
+          Napisz funkcję liczącą pole wybranej figury (prostokąt, trapez,
+          równoległobok, trójkąt) bez użycia instrukcji warunkowej (bez if,
+          switch, pętli). Wykorzystaj funkcje anonimowe i callback.
+        </div>
+
+        <div>
+          <label for="exerciseInput8a">arg1:</label>
+          <input type="number" name="exerciseInput8a" />
+
+          <label for="exerciseInput8b">arg2:</label>
+          <input type="number" name="exerciseInput8b" />
+
+          <label for="exerciseInput8c">arg3:</label>
+          <input type="number" name="exerciseInput8c" />
+        </div>
+
+        <div style="padding: 10px 0 0 0">
+          <input
+            id="rectangle2"
+            type="radio"
+            name="figure2"
+            value="rectangle"
+            checked
+          />
+          <label for="rectangle2">Rectangle</label>
+
+          <input
+            id="parallelogram2"
+            type="radio"
+            name="figure2"
+            value="parallelogram"
+          />
+          <label for="parallelogram2">Parallelogram</label>
+
+          <input
+            id="trapezium2"
+            type="radio"
+            name="figure2"
+            value="trapezium"
+          />
+          <label for="trapezium2">Trapezium</label>
+
+          <input id="triangle2" type="radio" name="figure2" value="triangle" />
+          <label for="triangle2">Triangle</label>
+        </div>
+
+        <div class="btn" onclick="printExercise8()">Wyświetl w konsoli</div>
+      </div>
+    </div>
+  </body>
+</html>
