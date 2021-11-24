@@ -1,11 +1,20 @@
+// helpers
+const range = length => Array.from({ length }, (_, i) => i);
+
+const strPad = (str, length) =>
+  str
+    .padEnd(
+      Math.min(length, Math.ceil(length / 2) + Math.floor(str.length / 2)),
+      " "
+    )
+    .padStart(length, " ");
+
 const printExercise = (id, text) => {
   window.console.log(`%cZadanie ${id}.`, "color: #f00", `\n${text}`);
 };
 
 const getValue = inputName =>
-  Number(
-    document.querySelector(`input[name=exerciseInput${inputName}]`).value || 0
-  );
+  +(document.querySelector(`input[name=exerciseInput${inputName}]`).value || 0);
 
 // 1. Napisz funkcję, sprawdzającą, czy dane trzy liczby tworzą „trójkę pitagorejską” (uwaga – liczby nie muszą być podane w kolejności rosnącej)
 
@@ -52,10 +61,29 @@ const makeMultiplicationTable = length =>
     Array.from({ length }, (_, i2) => (i1 + 1) * (i2 + 1))
   );
 
-const makeMultiplicationTableStr = length =>
-  makeMultiplicationTable(length)
-    .map(row => row.join(" "))
-    .join("\n");
+const makeMultiplicationTableStr = length => {
+  const arr = makeMultiplicationTable(length);
+
+  const lastRow = arr[arr.length - 1];
+  const lastValue = lastRow[lastRow.length - 1];
+  const maxValueStrLength = String(lastValue).length;
+
+  const rowLength = arr[0].length;
+  const cellLength = maxValueStrLength + 2;
+
+  const separatorRow = Array(rowLength)
+    .fill("-".repeat(cellLength))
+    .join("|")
+    .slice(1);
+
+  return arr
+    .map(row =>
+      row
+        .map(value => String(value).padStart(maxValueStrLength, " "))
+        .join(" | ")
+    )
+    .join(`\n${separatorRow}\n`);
+};
 
 const printExercise3 = () => {
   const x = getValue("3");
@@ -142,23 +170,45 @@ const trapeziumArea = (a, b, h) => ((a + b) * h) / 2;
 
 const triangleArea = (a, h) => (a * h) / 2;
 
-const dirtyCalcArea = (figureName, ...args) => {
-  switch (figureName) {
-    case "rectangle":
-      return rectangleArea(...args);
+// 'switch' nie jest rekomendowaną techniką w JS/TS
+// https://gist.github.com/jonkemp/2c6e1e0f530b2af034a50374532f406f
+// https://hackernoon.com/rethinking-javascript-eliminate-the-switch-statement-for-better-code-5c81c044716d
 
-    case "parallelogram":
-      return parallelogramArea(...args);
+// const calcArea = (figureName, ...args) => {
+//   switch (figureName) {
+//     case "rectangle":
+//       return rectangleArea(...args);
 
-    case "trapezium":
-      return trapeziumArea(...args);
+//     case "parallelogram":
+//       return parallelogramArea(...args);
 
-    case "triangle":
-      return triangleArea(...args);
+//     case "trapezium":
+//       return trapeziumArea(...args);
 
-    default:
-      throw new Error("Unknown figure name");
+//     case "triangle":
+//       return triangleArea(...args);
+
+//     default:
+//       throw new Error("Unknown figure name");
+//   }
+// };
+
+const getAreaFn = figureName =>
+  ({
+    rectangle: rectangleArea,
+    parallelogram: parallelogramArea,
+    trapezium: trapeziumArea,
+    triangle: triangleArea
+  }[figureName]);
+
+const calcArea = (figureName, ...args) => {
+  const fn = getAreaFn(figureName);
+
+  if (!fn) {
+    throw new Error("Unknown figure name");
   }
+
+  return fn(...args);
 };
 
 const figureArgsToString = (figureName, ...args) =>
@@ -179,30 +229,17 @@ const printExercise7 = () => {
 
   printExercise(
     7,
-    `${figureArgsToString(figureName, ...args)} => ${dirtyCalcArea(
+    `${figureArgsToString(figureName, ...args)} => ${calcArea(
       figureName,
       ...args
     )}`
   );
 };
 
-const calcAreaForReal = (figureName, ...args) => {
-  const fn = {
-    rectangle: rectangleArea,
-    parallelogram: parallelogramArea,
-    trapezium: trapeziumArea,
-    triangle: triangleArea
-  }[figureName];
-
-  if (!fn) {
-    throw new Error("Unknown figure name");
-  }
-
-  return fn(...args);
-};
-
 // 8. Napisz funkcję liczącą pole wybranej figury (prostokąt, trapez, równoległobok, trójkąt) bez użycia instrukcji warunkowej (bez if, switch, pętli)
 // Wykorzystaj funkcje anonimowe i callback.
+
+const calcAreaFromCallback = (callback, ...args) => callback?.(...args);
 
 const printExercise8 = () => {
   const figureName = document.querySelector(
@@ -210,13 +247,56 @@ const printExercise8 = () => {
   ).value;
   const args = [getValue("8a"), getValue("8b"), getValue("8c")];
 
+  const fn = getAreaFn(figureName);
+
   printExercise(
     8,
-    `${figureArgsToString(figureName, ...args)} => ${calcAreaForReal(
-      figureName,
+    `${figureArgsToString(figureName, ...args)} => ${calcAreaFromCallback(
+      fn,
       ...args
     )}`
   );
 };
 
-// 9. Napisz funkcję wypisującą w konsoli trójkąt Pascala o wysokości podanej jako paramet
+// 9. Napisz funkcję wypisującą w konsoli trójkąt Pascala o wysokości podanej jako parametr
+
+const makePascalTriangle = length => {
+  const arr = [[1]];
+
+  for (const i of range(length)) {
+    const previousRow = arr[i];
+    const nextRow = [1];
+
+    for (const j of range(previousRow.length)) {
+      nextRow.push(previousRow[j] + (previousRow[j + 1] ?? 0));
+    }
+
+    arr.push(nextRow);
+  }
+
+  return arr;
+};
+
+const makePascalTriangleStr = length => {
+  const arr = makePascalTriangle(length);
+
+  const lastRow = arr[arr.length - 1];
+
+  const maxValueStrLength = String(
+    lastRow[Math.ceil(lastRow.length / 2)]
+  ).length;
+
+  const strArr = arr.map(row =>
+    row.map(value => strPad(String(value), maxValueStrLength)).join(" ")
+  );
+
+  const maxRowStrLength = strArr[strArr.length - 1].length;
+
+  return strArr.map(row => strPad(row, maxRowStrLength)).join("\n");
+};
+
+const printExercise9 = () => {
+  const h = getValue("9");
+
+  printExercise(9, `${h} =>\n${makePascalTriangleStr(h)}`);
+};
