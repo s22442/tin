@@ -16,6 +16,9 @@ const printExercise = (id, text) => {
 const getValue = inputName =>
   +(document.querySelector(`input[name=exerciseInput${inputName}]`).value || 0);
 
+const getInput = inputName =>
+  document.querySelector(`input[name=exerciseInput${inputName}]`);
+
 // 1. Napisz funkcję, sprawdzającą, czy dane trzy liczby tworzą „trójkę pitagorejską” (uwaga – liczby nie muszą być podane w kolejności rosnącej)
 
 const square = value => Math.pow(value, 2);
@@ -170,7 +173,7 @@ const trapeziumArea = (a, b, h) => ((a + b) * h) / 2;
 
 const triangleArea = (a, h) => (a * h) / 2;
 
-// 'switch' nie jest rekomendowaną techniką w JS/TS
+// notacja obiektu jest zalecanym zamiennikiem instrukcji switch-case
 // https://gist.github.com/jonkemp/2c6e1e0f530b2af034a50374532f406f
 // https://hackernoon.com/rethinking-javascript-eliminate-the-switch-statement-for-better-code-5c81c044716d
 
@@ -299,4 +302,128 @@ const printExercise9 = () => {
   const h = getValue("9");
 
   printExercise(9, `${h} =>\n${makePascalTriangleStr(h)}`);
+};
+
+// 10. Dany jest Obiekt: auto{ rok, przebieg, cena_wyjsciowa, cena_koncowa }
+
+const DEFAULT_CAR = {
+  year: 2_010,
+  mileage: 300_000,
+  startingPrice: 100_000,
+  finalPrice: 100_000
+};
+
+// https://v3.vuejs.org/api/basic-reactivity.html#reactive
+// reactive() zwraca reaktywną kopię obiektu podanego jako parametr
+// watch() umożliwia reagowanie na zmiany wprowadzane w reaktywnych obiektach
+// w tym przypadku chcemy, aby jakiekolwiek zmiany w instancji obiektu auta były automatycznie odzwierciedlane w inputach powiązanych z zadaniem
+const { reactive, watch } = Vue;
+// alternatywnym rozwiązaniem byłoby wywoływanie funkcji updateCarInputs() w każdej funkcji modyfikującej zawartość auta
+
+let yearInput = null;
+let mileageInput = null;
+let startingPriceInput = null;
+let finalPriceInput = null;
+
+let carArrayPreview = null;
+
+const car = reactive(DEFAULT_CAR);
+
+const positiveOnly = value => Math.max(0, value || 0);
+
+const updateCar = () => {
+  car.year = positiveOnly(yearInput.value);
+  car.mileage = positiveOnly(mileageInput.value);
+  car.startingPrice = positiveOnly(startingPriceInput.value);
+  car.finalPrice = positiveOnly(finalPriceInput.value);
+};
+
+const updateCarInputs = () => {
+  const { year, mileage, startingPrice, finalPrice } = car;
+
+  yearInput.value = year;
+  mileageInput.value = mileage;
+  startingPriceInput.value = startingPrice;
+  finalPriceInput.value = finalPrice;
+};
+
+watch(car, updateCarInputs);
+
+window.onload = () => {
+  yearInput = getInput("10a");
+  mileageInput = getInput("10b");
+  startingPriceInput = getInput("10c");
+  finalPriceInput = getInput("10d");
+
+  yearInput.oninput = updateCar;
+  mileageInput.oninput = updateCar;
+  startingPriceInput.oninput = updateCar;
+  finalPriceInput.oninput = updateCar;
+
+  updateCarInputs();
+
+  carArrayPreview = document.querySelector(".car-array-preview");
+};
+
+// a) Funkcja, która powiększa cenę wyjściową o 1000
+
+const raiseCarStartingPrice = () => {
+  car.startingPrice += 1_000;
+};
+
+// b) Funkcja, która obniża cenę końcową o 1000 za każdy rok wieku auta (względem ceny wyjściowej)
+
+const getCurrentYear = () => new Date().getFullYear();
+
+const getAgeLoss = () => 1_000 * (getCurrentYear() - car.year);
+
+const calcCarFinalPriceByYear = () => {
+  car.finalPrice = car.startingPrice - getAgeLoss();
+};
+
+// c) Funkcja, która obniża cenę końcową o 10000 za każde 100000km przebiegu auta
+
+const getMileageLoss = () => 10_000 * Math.floor(car.mileage / 100_000);
+
+const calcCarFinalPriceByMileage = () => {
+  car.finalPrice = car.startingPrice - getMileageLoss();
+};
+
+// d) Funkcja, która dopisuje do auta podany przebieg i rok (automatycznie przeliczając cenę wg powyższych funkcji)
+
+const calcCarFinalPrice = () => {
+  car.finalPrice = car.startingPrice - (getAgeLoss() + getMileageLoss());
+};
+
+// e) Funkcja, która dopisze auto do tablicy samochodow, jesli jego cena jest wieksza niz 10000
+
+const cars = reactive([]);
+
+const updateCarArrayPreview = () => {
+  carArrayPreview.innerHTML = cars
+    .map(
+      ({ year, mileage, startingPrice, finalPrice }, i) =>
+        `${
+          i + 1
+        }: { rok: ${year}, przebieg: ${mileage}, cena wyjściowa: ${startingPrice}, cena końcowa: ${finalPrice} }`
+    )
+    .join("\n");
+};
+
+watch(cars, updateCarArrayPreview);
+
+const pushCarIfExpensiveEnough = () => {
+  if (car.finalPrice > 10_000) {
+    cars.push(car);
+  }
+};
+
+// f) Funkcja, ktora operuje na tablicy obiektow typu auto. Dla wszystkich aut z tablicy zwieksza rok o 1
+
+const rejuvenateCars = () => {
+  cars.splice(
+    0,
+    cars.length,
+    ...cars.map(item => ({ ...item, year: item.year + 1 }))
+  );
 };
