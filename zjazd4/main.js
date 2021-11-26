@@ -13,11 +13,10 @@ const printExercise = (id, text) => {
   window.console.log(`%cZadanie ${id}.`, "color: #f00", `\n${text}`);
 };
 
-const getValue = inputName =>
-  +(document.querySelector(`input[name=exerciseInput${inputName}]`).value || 0);
-
 const getInput = inputName =>
   document.querySelector(`input[name=exerciseInput${inputName}]`);
+
+const getValue = inputName => +(getInput(inputName).value || 0);
 
 // 1. Napisz funkcję, sprawdzającą, czy dane trzy liczby tworzą „trójkę pitagorejską” (uwaga – liczby nie muszą być podane w kolejności rosnącej)
 
@@ -53,7 +52,7 @@ const printExercise2 = () => {
 
   printExercise(
     2,
-    `a = ${a}, b = ${b}, c = ${c} => ${rangeDivisibleBy(a, b, c)}`
+    `a = ${a}, b = ${b}, c = ${c} => ${rangeDivisibleBy(a, b, c).join(", ")}`
   );
 };
 
@@ -115,7 +114,7 @@ const makeFibbSequence = length =>
 const printExercise4 = () => {
   const x = getValue("4");
 
-  printExercise(4, `${x} => ${makeFibbSequence(x)}`);
+  printExercise(4, `${x} => ${makeFibbSequence(x).join(", ")}`);
 };
 
 // 5. Narysuj choinkę o podanej wysokości
@@ -266,7 +265,7 @@ const printExercise8 = () => {
 const makePascalTriangle = length => {
   const arr = [[1]];
 
-  for (const i of range(length)) {
+  for (const i of range(length - 1)) {
     const previousRow = arr[i];
     const nextRow = [1];
 
@@ -378,7 +377,7 @@ const getCurrentYear = () => new Date().getFullYear();
 const getAgeLoss = () => 1_000 * (getCurrentYear() - car.year);
 
 const calcCarFinalPriceByYear = () => {
-  car.finalPrice = car.startingPrice - getAgeLoss();
+  car.finalPrice = Math.max(0, car.startingPrice - getAgeLoss());
 };
 
 // c) Funkcja, która obniża cenę końcową o 10000 za każde 100000km przebiegu auta
@@ -386,13 +385,16 @@ const calcCarFinalPriceByYear = () => {
 const getMileageLoss = () => 10_000 * Math.floor(car.mileage / 100_000);
 
 const calcCarFinalPriceByMileage = () => {
-  car.finalPrice = car.startingPrice - getMileageLoss();
+  car.finalPrice = Math.max(0, car.startingPrice - getMileageLoss());
 };
 
 // d) Funkcja, która dopisuje do auta podany przebieg i rok (automatycznie przeliczając cenę wg powyższych funkcji)
 
 const calcCarFinalPrice = () => {
-  car.finalPrice = car.startingPrice - (getAgeLoss() + getMileageLoss());
+  car.finalPrice = Math.max(
+    0,
+    car.startingPrice - (getAgeLoss() + getMileageLoss())
+  );
 };
 
 // e) Funkcja, która dopisze auto do tablicy samochodow, jesli jego cena jest wieksza niz 10000
@@ -426,4 +428,8 @@ const rejuvenateCars = () => {
     cars.length,
     ...cars.map(item => ({ ...item, year: item.year + 1 }))
   );
+};
+
+const clearCars = () => {
+  cars.splice(0, cars.length);
 };
