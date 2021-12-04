@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIN stronka</title>
+
+    <script src="https://unpkg.com/vue@3.2.22/dist/vue.global.prod.js"></script>
+
+    <script src="./helpers.js"></script>
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="./main.css" />
+
+    <script src="./divs.js"></script>
+    <link rel="stylesheet" href="./divs.css" />
+
+    <script src="./cars.js"></script>
+    <link rel="stylesheet" href="./cars.css" />
+
+    <script src="./accordion.js"></script>
+    <link rel="stylesheet" href="./accordion.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../favicon/safari-pinned-tab.svg"
+      color="#003543"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#001e26" />
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h1>Zadanie 1.</h1>
+
+        <div class="text">
+          Prosta modyfikacja DOM. Stwórz 4 divy w HTML oraz 4 przyciski. Do
+          przycisków dodaj następujące działanie:
+          <div>przycisk 1 – doda kolejny div do 4 istniejących divów</div>
+          <div>
+            przycisk 2 – usunie pierwszy div (kolejne naciśnięcie usunie kolejny
+            div i tak dalej)
+          </div>
+          <div>przycisk 3 – zmieni kolor tła diva numer 3</div>
+          <div>przycisk 4 – wpisze tekst „nowy tekst” do wszystkich divów</div>
+        </div>
+
+        <div>
+          <div class="btn" onclick="addDiv()">doda kolejny div</div>
+
+          <div class="btn" onclick="shiftDiv()">usunie pierwszy div</div>
+
+          <div class="btn" onclick="colorizeThirdDiv()">
+            zmieni kolor tła diva numer 3
+          </div>
+
+          <div class="btn" onclick="setDivsContent('nowy tekst')">
+            wpisze tekst „nowy tekst” do wszystkich divów
+          </div>
+
+          <div class="btn" onclick="setDivsDefaultContent()">
+            wpisze tekst „div X” do wszystkich divów
+          </div>
+        </div>
+
+        <b>Divy do zabawy:</b>
+        <div class="div-playground"></div>
+      </div>
+
+      <div>
+        <h1>
+          Zadanie 2. - Zadanie 10. ze zjazdu 4 (+tabelka do podglądu samochodów)
+        </h1>
+
+        <div class="info">
+          <div>
+            Poniższe pola reprezentują akutalny stan obiektu z treści zadania.
+          </div>
+          <div>
+            Ich zawartość będzie wpływać na resultaty funkcji z podpunktów
+            <b>a-d</b> oraz
+            <b>będzie się zmieniać pod wpływem działania tych funkcji</b>.
+          </div>
+        </div>
+
+        <div>
+          <b>Auto:</b>
+
+          <div>
+            <label for="car__year">rok:</label>
+            <input type="number" name="car__year" />
+          </div>
+
+          <div>
+            <label for="car__mileage">przebieg:</label>
+            <input type="number" name="car__mileage" />
+          </div>
+
+          <div>
+            <label for="car__startingPrice">cena wyjściowa:</label>
+            <input type="number" name="car__startingPrice" />
+          </div>
+
+          <div>
+            <label for="car__finalPrice">cena końcowa:</label>
+            <input type="number" name="car__finalPrice" />
+          </div>
+        </div>
+
+        <div class="btn" onclick="raiseCarStartingPrice()">
+          a) Funkcja, która powiększa cenę wyjściową o 1000
+        </div>
+        <div class="btn" onclick="calcCarFinalPriceByYear()">
+          b) Funkcja, która obniża cenę końcową o 1000 za każdy rok wieku auta
+          (względem ceny wyjściowej)
+        </div>
+        <div class="btn" onclick="calcCarFinalPriceByMileage()">
+          c) Funkcja, która obniża cenę końcową o 10000 za każde 100000km
+          przebiegu auta
+        </div>
+        <div class="btn" onclick="calcCarFinalPrice()">
+          d) Funkcja, która dopisuje do auta podany przebieg i rok
+          (automatycznie przeliczając cenę wg powyższych funkcji)
+        </div>
+        <div class="btn" onclick="pushCarIfExpensiveEnough()">
+          e) Funkcja, która dopisze auto do tablicy samochodow, jesli jego cena
+          jest wieksza niz 10000
+        </div>
+        <div class="btn" onclick="rejuvenateCars()">
+          f) Funkcja, ktora operuje na tablicy obiektow typu auto. Dla
+          wszystkich aut z tablicy zwieksza rok o 1
+        </div>
+
+        <b>Auta:</b>
+        <div class="car-array-table">
+          <div class="car-array-table__header">
+            <div>rok</div>
+            <div>przebieg (km)</div>
+            <div>cena wyjściowa (zł)</div>
+            <div>cena końcowa (zł)</div>
+          </div>
+          <div class="car-array-table__body"></div>
+        </div>
+        <div class="btn" onclick="clearCars()">Wyczyść tabelę</div>
+      </div>
+
+      <div>
+        <h1>Zadanie 4.</h1>
+
+        <div class="text">
+          Przy pomocy HTML, CSS, JS zbuduj akordeon(przykład:
+          https://jqueryui.com/accordion/)bez używania gotowych bibliotek
+        </div>
+
+        <b>Akordeon:</b>
+        <div class="accordion">
+          <div class="accordion__item">
+            <div class="accordion__item__head">Sekcja 1</div>
+            <div class="accordion__item__body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              consectetur id necessitatibus culpa porro nam, voluptatum suscipit
+              molestias expedita itaque reiciendis recusandae deserunt vitae!
+              Nesciunt animi deleniti cumque a in.
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <div class="accordion__item__head">Sekcja 2</div>
+            <div class="accordion__item__body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              consectetur id necessitatibus culpa porro nam, voluptatum suscipit
+              molestias expedita itaque reiciendis recusandae deserunt vitae!
+              Nesciunt animi deleniti cumque a in.
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <div class="accordion__item__head">Sekcja 3</div>
+            <div class="accordion__item__body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              consectetur id necessitatibus culpa porro nam, voluptatum suscipit
+              molestias expedita itaque reiciendis recusandae deserunt vitae!
+              Nesciunt animi deleniti cumque a in.
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <div class="accordion__item__head">Sekcja 4</div>
+            <div class="accordion__item__body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+              consectetur id necessitatibus culpa porro nam, voluptatum suscipit
+              molestias expedita itaque reiciendis recusandae deserunt vitae!
+              Nesciunt animi deleniti cumque a in.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

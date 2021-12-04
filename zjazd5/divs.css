@@ -1,0 +1,20 @@
+.div-playground {
+  border: 1px solid #555;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 5px;
+  min-height: 50px;
+}
+
+.div-playground > div {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #999;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+  font-weight: 700;
+}

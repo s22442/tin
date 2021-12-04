@@ -1,0 +1,42 @@
+label[for="car__year"],
+label[for="car__mileage"],
+label[for="car__startingPrice"],
+label[for="car__finalPrice"] {
+  display: inline-block;
+  min-width: 150px;
+}
+
+.car-array-table {
+  border: 1px solid #000;
+  text-align: center;
+}
+
+.car-array-table .car-array-table__header,
+.car-array-table .car-array-table__body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.car-array-table .car-array-table__header > *,
+.car-array-table .car-array-table__body > * {
+  min-width: 0;
+  min-height: 0;
+  padding: 5px;
+}
+
+.car-array-table .car-array-table__header {
+  grid-template-rows: auto;
+  font-weight: 700;
+}
+
+.car-array-table .car-array-table__header > * {
+  border: 1px solid #000;
+}
+
+.car-array-table .car-array-table__body {
+  grid-auto-rows: auto;
+}
+
+.car-array-table .car-array-table__body > * {
+  border: 1px solid #999;
+}
