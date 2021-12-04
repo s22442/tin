@@ -416,7 +416,7 @@ watch(cars, updateCarArrayPreview);
 
 const pushCarIfExpensiveEnough = () => {
   if (car.finalPrice > 10_000) {
-    cars.push(car);
+    cars.push({ ...car });
   }
 };
 
