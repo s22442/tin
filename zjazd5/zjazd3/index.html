@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIN stronka</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="./main.js"></script>
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../../favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../../favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../../favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../../favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="../../favicon/safari-pinned-tab.svg"
+      color="#003543"
+    />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#001e26" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="appLayoutGrid">
+        <div id="appNav">
+          <div class="nav-container">
+            <div class="nav-item-wrapper">
+              <div class="nav-item">
+                <a class="nav-item__link" href="#">link</a>
+                <div class="nav-item__dropdown">
+                  <a class="nav-item__sublink" href="#">link2</a>
+                  <a class="nav-item__sublink" href="#">link2</a>
+                  <a class="nav-item__sublink" href="#">link2</a>
+                </div>
+              </div>
+              <div class="nav-item">
+                <a class="nav-item__link" href="#">link2</a>
+              </div>
+              <div class="nav-item">
+                <a class="nav-item__link" href="#">link3</a>
+              </div>
+            </div>
+
+            <div class="nav-spacer"></div>
+
+            <div class="nav-collapser" onclick="toggleNavCollapse()">
+              reorder
+            </div>
+          </div>
+        </div>
+
+        <div id="appContent">
+          <div class="app-content__container">
+            <div class="header">title 1</div>
+
+            <div class="text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+              corporis nostrum culpa? Vero laboriosam reprehenderit magnam
+              eveniet! Deserunt, repellat dolores, est at accusamus vitae culpa
+              obcaecati quas illo sed dolorem! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Atque, quaerat. Eius dolorum natus
+              fugiat eum quo voluptatem doloremque doloribus voluptatibus! Nihil
+              magnam accusantium tempora recusandae iure odio ipsa aperiam
+              impedit.
+            </div>
+
+            <div class="img-container"></div>
+
+            <div class="subheader">subtitle</div>
+
+            <div class="text">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
+              consectetur dolores nulla corrupti mollitia laudantium iusto rem
+              repudiandae et fugiat fuga ipsam ducimus est sequi, eum numquam
+              suscipit molestias ex. Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Maxime enim, optio ipsa qui veritatis, dolore
+              quis, sunt incidunt atque cupiditate voluptates labore. Architecto
+              culpa blanditiis, dignissimos nemo in hic cupiditate.
+            </div>
+
+            <div class="subheader">subtitle</div>
+
+            <div class="text">lorem ipsum</div>
+          </div>
+
+          <div class="app-content__container">
+            <div class="header">title 2</div>
+
+            <div class="text">lorem ipsum</div>
+
+            <form class="form" action="#" method="post">
+              <div class="form__name">
+                <div>
+                  <label class="lead" for="name">Imię i nazwisko</label>
+                </div>
+                <input
+                  class="form__name__input"
+                  type="text"
+                  name="name"
+                  placeholder="imię i nazwisko"
+                />
+              </div>
+
+              <div class="form__description">
+                <div>
+                  <label class="lead" for="description">Opis</label>
+                </div>
+                <textarea
+                  class="form__description__textarea"
+                  name="description"
+                  placeholder="wpisz coś o sobie"
+                ></textarea>
+              </div>
+
+              <div class="form__age">
+                <div>
+                  <label class="lead" for="age">Wiek</label>
+                </div>
+                <select name="age">
+                  <option selected>wybierz...</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                </select>
+              </div>
+
+              <div class="form__options">
+                <div class="lead">Opcja</div>
+                <div>
+                  <input type="radio" name="option" value="option1" />
+                  <label for="option1">a</label>
+                </div>
+                <div>
+                  <input type="radio" name="option" value="option2" />
+                  <label for="option2">b</label>
+                </div>
+                <div>
+                  <input type="radio" name="option" value="option3" />
+                  <label for="option3">c</label>
+                </div>
+              </div>
+
+              <button class="form__submit" type="submit">wyślij</button>
+            </form>
+
+            <div class="grid-table">
+              <div class="grid-table__header">col1</div>
+              <div class="grid-table__header">col2</div>
+              <div class="grid-table__header">col3</div>
+              <div class="grid-table__header">col4</div>
+              <div class="grid-table__header">col5</div>
+              <div class="grid-table__header">col6</div>
+              <div class="grid-table__header">col7</div>
+              <div class="grid-table__header">col8</div>
+              <div class="grid-table__header">col9</div>
+              <div class="grid-table__header">col10</div>
+              <div class="grid-table__header">col11</div>
+              <div class="grid-table__header">col12</div>
+              <div class="grid-table__header">col13</div>
+              <div class="grid-table__header">col14</div>
+              <div class="grid-table__header">col15</div>
+              <div class="grid-table__header">col16</div>
+              <div class="grid-table__header">col17</div>
+              <div class="grid-table__header">col18</div>
+              <div class="grid-table__header">col19</div>
+              <div class="grid-table__header">col20</div>
+            </div>
+
+            <script>
+              const GRID_CHILD_COUNT = 20 * 7;
+
+              const range = Array.from(
+                { length: GRID_CHILD_COUNT },
+                (_, i) => i + 1
+              );
+
+              const gridTable = document.querySelector(".grid-table");
+
+              for (const i of range) {
+                const div = document.createElement("div");
+                div.innerHTML = i;
+                gridTable.appendChild(div);
+              }
+            </script>
+          </div>
+        </div>
+
+        <div id="appFooter">
+          <div>sample text 1</div>
+
+          <div>sample text 2</div>
+
+          <div>sample text 3</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

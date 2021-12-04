@@ -1,0 +1,399 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+
+  --color-black: #000;
+  --color-dark: #777;
+  --color-gray: #ddd;
+  --color-light: #fcfcfc;
+}
+
+@media (max-width: 1000px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#appLayoutGrid {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "app-nav"
+    "app-content"
+    "app-footer";
+}
+
+#appLayoutGrid > * {
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+#appNav {
+  grid-area: app-nav;
+  z-index: 1;
+}
+
+#appNav .nav-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: var(--color-light);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
+}
+
+#appNav .nav-container .nav-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#appNav .nav-container .nav-item-wrapper .nav-item {
+  display: block;
+  padding: 0 10px;
+  position: relative;
+}
+
+#appNav .nav-container .nav-item-wrapper .nav-item .nav-item__link {
+  display: block;
+  line-height: 1.5;
+  font-size: 1.25em;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#appNav .nav-container .nav-item-wrapper .nav-item .nav-item__dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 400%;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
+}
+
+#appNav .nav-container .nav-item-wrapper .nav-item:hover .nav-item__dropdown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#appNav
+  .nav-container
+  .nav-item-wrapper
+  .nav-item
+  .nav-item__dropdown
+  .nav-item__sublink {
+  display: block;
+  padding: 0 10px;
+  line-height: 1.8;
+  font-size: 1.1em;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-black);
+  background: var(--color-light);
+  transition: background 300ms;
+}
+
+#appNav
+  .nav-container
+  .nav-item-wrapper
+  .nav-item
+  .nav-item__dropdown
+  .nav-item__sublink:hover {
+  background: var(--color-gray);
+}
+
+#appNav .nav-container .nav-spacer {
+  flex: 1 0 0;
+}
+
+#appNav .nav-container .nav-collapser {
+  font-family: Material Icons, serif;
+  font-size: 2.3rem;
+  line-height: 1;
+  display: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  #appNav .nav-container {
+    padding: 5px 10px;
+  }
+
+  #appNav .nav-container .nav-item-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--color-light);
+    z-index: -1;
+    padding: 5px 0 0 0;
+    gap: 0;
+
+    transition: transform 300ms;
+  }
+
+  #appNav .nav-container.nav-container--collapsed .nav-item-wrapper {
+    transform: translateY(-100%);
+  }
+
+  #appNav .nav-container .nav-item-wrapper .nav-item {
+    text-align: center;
+    padding: 0;
+  }
+
+  #appNav .nav-container .nav-item-wrapper .nav-item .nav-item__link,
+  #appNav
+    .nav-container
+    .nav-item-wrapper
+    .nav-item
+    .nav-item__dropdown
+    .nav-item__sublink {
+    line-height: 2;
+    border-bottom: 1px solid var(--color-dark);
+  }
+
+  #appNav .nav-container .nav-item-wrapper .nav-item .nav-item__link:hover,
+  #appNav
+    .nav-container
+    .nav-item-wrapper
+    .nav-item
+    .nav-item__dropdown
+    .nav-item__sublink:hover {
+    text-decoration: underline;
+  }
+
+  #appNav .nav-container .nav-item-wrapper .nav-item .nav-item__dropdown {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  #appNav
+    .nav-container
+    .nav-item-wrapper
+    .nav-item
+    .nav-item__dropdown
+    .nav-item__sublink,
+  #appNav
+    .nav-container
+    .nav-item-wrapper
+    .nav-item
+    .nav-item__dropdown
+    .nav-item__sublink:hover {
+    background: var(--color-gray);
+  }
+
+  #appNav .nav-container .nav-collapser {
+    display: block;
+  }
+}
+
+#appContent {
+  grid-area: app-content;
+  background: var(--color-gray);
+  overflow: hidden auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 25px;
+}
+
+@media (max-width: 1000px) {
+  #appContent {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content;
+  }
+}
+
+.app-content__container {
+  min-width: 0;
+  min-height: 0;
+  padding: 15px;
+  background: var(--color-light);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
+}
+
+#appContent .header {
+  color: var(--color-black);
+  font-size: 1.8rem;
+  line-height: 2;
+  font-weight: 600;
+}
+
+#appContent .subheader {
+  color: var(--color-black);
+  font-size: 2.2rem;
+  line-height: 2;
+  font-weight: 800;
+}
+
+#appContent .text {
+  color: var(--color-dark);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1400px) {
+  #appContent .header {
+    font-size: 1.5rem;
+    line-height: 2;
+  }
+
+  #appContent .subheader {
+    font-size: 2rem;
+    line-height: 2;
+  }
+
+  #appContent .text {
+    line-height: 1.3;
+  }
+}
+
+#appContent .img-container {
+  margin: 1rem 0;
+  width: 100%;
+  height: 200px;
+  background: url("../../assets/desert-road.jpg") center / cover no-repeat local;
+}
+
+#appContent .form {
+  background: var(--color-gray);
+  color: var(--color-black);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  padding: 10px;
+  margin: 1rem 0;
+}
+
+#appContent .form .lead {
+  color: var(--color-black);
+  font-weight: 500;
+}
+
+#appContent .form .form__name {
+  color: var(--color-dark);
+}
+
+#appContent .form .form__name .form__name__input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#appContent .form .form__description {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#appContent .form .form__description .form__description__textarea {
+  margin: 0;
+  width: 100%;
+  height: 7rem;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#appContent .form .form__name .form__name__input,
+#appContent .form .form__description .form__description__textarea {
+  outline: none;
+}
+
+#appContent .form .form__name .form__name__input:focus,
+#appContent .form .form__description .form__description__textarea:focus {
+  outline: none;
+}
+
+#appContent .form .form__age {
+  grid-area: age;
+}
+
+#appContent .form .form__options {
+  grid-area: options;
+}
+
+#appContent .form .form__submit {
+  grid-area: submit;
+  place-self: start;
+  color: var(--color-black);
+  padding: 0 5px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#appContent .grid-table {
+  display: grid;
+  grid-template-columns: repeat(20, minmax(70px, 1fr));
+  grid-auto-rows: auto;
+  color: var(--color-black);
+  overflow: auto;
+}
+
+#appContent .grid-table > * {
+  min-width: 0;
+  min-height: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  border-bottom: 1px solid var(--color-dark);
+}
+
+#appContent .grid-table .grid-table__header {
+  font-weight: 600;
+  border-bottom: none;
+}
+
+#appFooter {
+  grid-area: app-footer;
+  display: flex;
+  gap: 1px;
+  background: var(--color-dark);
+  border-top: 10px solid var(--color-light);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4),
+    -3px -3px 3px rgba(73, 73, 73, 0.4);
+}
+
+#appFooter > * {
+  flex-grow: 1;
+  background: var(--color-light);
+  padding: 0 30px;
+  font-size: 1rem;
+  line-height: 4;
+  color: var(--color-dark);
+  font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  #appFooter > * {
+    padding: 0;
+    text-align: center;
+  }
+}
