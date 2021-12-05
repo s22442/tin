@@ -134,6 +134,7 @@
   font-size: 3rem;
   transition: color 300ms;
 }
+
 .lightbox-gallery__modal
   .lightbox-gallery__modal__lower-bar
   .lightbox-gallery__modal__lower-bar__next-btn.lightbox-gallery__modal__lower-bar__btn--disabled,
