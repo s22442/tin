@@ -8,6 +8,18 @@
 
     <script src="https://unpkg.com/vue@3.2.22/dist/vue.global.prod.js"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
     <script src="./helpers.js"></script>
     <link rel="stylesheet" href="../normalize.css" />
     <link rel="stylesheet" href="./main.css" />
@@ -20,6 +32,9 @@
 
     <script src="./accordion.js"></script>
     <link rel="stylesheet" href="./accordion.css" />
+
+    <script src="./gallery.js"></script>
+    <link rel="stylesheet" href="./gallery.css" />
 
     <link
       rel="apple-touch-icon"
@@ -87,9 +102,7 @@
       </div>
 
       <div>
-        <h1>
-          Zadanie 2. - Zadanie 10. ze zjazdu 4 (+tabelka do podglądu samochodów)
-        </h1>
+        <h1>Zadanie 2. - Zadanie 10. ze zjazdu 4 + tabelka z autami</h1>
 
         <div class="info">
           <div>
@@ -226,6 +239,40 @@
               Nesciunt animi deleniti cumque a in.
             </div>
           </div>
+        </div>
+      </div>
+
+      <div>
+        <h1>Zadanie 5.</h1>
+
+        <div class="text">
+          Przy pomocy HTML, CSS, JS zbuduj galerię zdjęć typu Lightbox(przykład:
+          http://brutaldesign.github.io/swipebox/) bez używania gotowych
+          bibliotek
+        </div>
+
+        <div class="lightbox-gallery">
+          <img title="vite" src="../assets/vite-logo.svg" />
+          <img title="desert" src="../assets/desert-road.jpg" />
+          <img title="typescript" src="../assets/typescript-logo.svg" />
+          <img title="vue" src="../assets/vue-logo.png" />
+          <img title="yarn" src="../assets/yarn-logo.svg" />
+          <img title="some forest" src="../assets/forest1.jpg" />
+          <img title="react" src="../assets/react-logo.svg" />
+          <img title="some other forest" src="../assets/forest2.jpg" />
+          <img title="yet another forest" src="../assets/forest3.jpg" />
+          <img
+            title="next nitro engine"
+            src="../assets/nuxt3-nitro-engine.svg"
+          />
+          <img title="svelte" src="../assets/svelte-logo.svg" />
+          <img title="yet yet another forest" src="../assets/forest4.jpg" />
+          <img
+            title="typescript / vue / nuxt"
+            src="../assets/typescript-vue-nuxt.png"
+          />
+          <img title="not a forest at all" src="../assets/forest5.jpg" />
+          <img title="prettier" src="../assets/prettier-logo.png" />
         </div>
       </div>
     </div>

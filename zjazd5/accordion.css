@@ -42,12 +42,12 @@
 }
 
 .accordion .accordion__item .accordion__item__head:hover {
-  background: #bbf;
+  background: #bdf;
 }
 
 .accordion .accordion__item.accordion__item--active .accordion__item__head {
-  background: #88f;
-  border: 1px solid #55f;
+  background: #8af;
+  border: 1px solid #57f;
 }
 
 .accordion .accordion__item .accordion__item__body {
