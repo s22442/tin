@@ -30,6 +30,20 @@ const getActiveImgIndexOfImgWrappers = elements =>
     )
   );
 
+const setGalleryModalUpperBarText = () => {
+  const wrappers = getLatestImgWrappers();
+
+  if (!wrappers?.length) {
+    return;
+  }
+
+  getLatestElement(".lightbox-gallery__modal__upper-bar").innerHTML =
+    capitalize(
+      wrappers[getActiveImgIndexOfImgWrappers(wrappers)]?.firstChild?.title ||
+        "image"
+    );
+};
+
 const setGalleryModalNavigationBtnStatus = () => {
   const wrappers = getLatestImgWrappers();
 
@@ -76,6 +90,7 @@ const changeActiveGalleryModalImg = async move => {
   );
 
   await forceNextTick();
+  setGalleryModalUpperBarText();
   setGalleryModalNavigationBtnStatus();
 };
 
@@ -109,8 +124,7 @@ const showGalleryModal = async (children, index) => {
     })
   );
 
-  const upperBar = pushModalElement(modal, "upper-bar");
-  upperBar.innerHTML = capitalize(children[index]?.title || "image");
+  pushModalElement(modal, "upper-bar");
 
   const lowerBar = pushModalElement(modal, "lower-bar");
 
@@ -137,6 +151,7 @@ const showGalleryModal = async (children, index) => {
   await forceNextTick();
   modal.style.opacity = 1;
 
+  setGalleryModalUpperBarText();
   setGalleryModalNavigationBtnStatus();
 };
 
