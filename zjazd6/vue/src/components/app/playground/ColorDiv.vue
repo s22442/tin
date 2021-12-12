@@ -8,7 +8,8 @@
       gridTemplateColumns: gridLineProperty,
       gridTemplateRows: gridLineProperty
     }"
-    @click.self="handleClick"
+    @mousedown.self="handleMousedown"
+    @mouseup.self="handleMouseup"
   >
     <ColorDiv v-for="child in item.children" :key="child.id" :item="child" />
   </div>
@@ -61,6 +62,10 @@ export default defineComponent({
       this.item.addChild();
     },
 
+    suggestSwap() {
+      this.item.suggestSwap();
+    },
+
     removeSelf() {
       this.item.removeSelf();
     },
@@ -69,7 +74,7 @@ export default defineComponent({
       this.item.roundRadius();
     },
 
-    handleClick() {
+    handleMousedown() {
       const action = this.getActiveAction();
 
       if (!action) {
@@ -77,12 +82,19 @@ export default defineComponent({
       }
 
       ({
-        colorize_bg: this.colorizeBg,
-        colorize_border: this.colorizeBorder,
+        colorizeBg: this.colorizeBg,
+        colorizeBorder: this.colorizeBorder,
         add: this.addChild,
+        swap: this.suggestSwap,
         remove: this.removeSelf,
         round: this.roundRadius
       }[action]());
+    },
+
+    handleMouseup() {
+      if (this.getActiveAction() === "swap") {
+        this.item.acceptSwap();
+      }
     }
   }
 });

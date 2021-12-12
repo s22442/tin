@@ -47,18 +47,35 @@ const updateMaxDepth = () => {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 25% 1rem 0 1rem;
+  padding: 1% 1rem 0 1rem;
   background-color: #0beef9;
   background-image: linear-gradient(315deg, #0beef9 0%, #48a9fe 74%);
   box-shadow: 0 0 5px 0 #0006;
   position: relative;
 
+  @media (min-width: 1500px) {
+    padding: 5% 1rem 0 1rem;
+  }
+
+  @media (min-width: 1600px) {
+    gap: 0.5rem;
+    padding: 15% 1rem 0 1rem;
+  }
+
+  @media (min-width: 1800px) {
+    padding: 25% 1rem 0 1rem;
+  }
+
   .label {
-    padding: 1rem 0 0 0;
+    padding: 0.5rem 0 0 0;
     font-size: 1.1rem;
     font-weight: 700;
     color: #fff;
     text-align: center;
+
+    @media (min-width: 1600px) {
+      padding: 1rem 0 0 0;
+    }
   }
 }
 </style>

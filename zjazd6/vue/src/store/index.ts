@@ -4,9 +4,10 @@ import type { StoreState, ColorItemOption } from "@/types";
 
 const COLOR_ITEM_OPTIONS: ColorItemOption[] = [
   { text: "Brak akcji", value: null },
-  { text: "Kolorowanie pola diva", value: "colorize_bg" },
-  { text: "Kolorowanie ramki diva", value: "colorize_border" },
+  { text: "Kolorowanie pola diva", value: "colorizeBg" },
+  { text: "Kolorowanie ramki diva", value: "colorizeBorder" },
   { text: "Dodawanie diva", value: "add" },
+  { text: "Przenoszenie diva", value: "swap" },
   { text: "Usuwanie diva", value: "remove" },
   { text: "Przełączanie zaokrąglenia", value: "round" }
 ];

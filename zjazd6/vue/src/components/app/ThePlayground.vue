@@ -22,10 +22,11 @@ const isSomeActionActive = computed(() => !!state.activeAction);
 const DEFAULT_BG_COLOR = "#fff";
 const DEFAULT_BORDER_COLOR = "#000";
 
-const SHARED_COLOR_ITEM_PART: Partial<ColorItem> = {
+const COLOR_ITEM_TEMPLATE: Partial<ColorItem> = {
   bgColor: DEFAULT_BG_COLOR,
   borderColor: DEFAULT_BORDER_COLOR,
   isCircular: false,
+  childToSwapId: null,
   updateBgColor(color) {
     this.bgColor = color;
   },
@@ -49,7 +50,7 @@ const SHARED_COLOR_ITEM_PART: Partial<ColorItem> = {
       (() => {
         const id = getters.getColorItemId();
         const child = {
-          ...SHARED_COLOR_ITEM_PART,
+          ...COLOR_ITEM_TEMPLATE,
           id,
           depth: this.depth + 1,
           children: reactive([])
@@ -57,9 +58,47 @@ const SHARED_COLOR_ITEM_PART: Partial<ColorItem> = {
         child.removeSelf = () => {
           (this as ColorItem).removeChild(id);
         };
+        child.suggestSwap = () => {
+          this.childToSwapId = id;
+        };
+        child.acceptSwap = async () => {
+          if (this.childToSwapId !== null) {
+            (this as ColorItem).swapChildren(id);
+            this.childToSwapId = null;
+          }
+        };
         return child as ColorItem;
       })()
     );
+  },
+  swapChildren(targedChildId) {
+    const children = this.children;
+
+    if (!children?.length) {
+      return;
+    }
+
+    const indexToSwap1 = children.findIndex(
+      (item) => item.id === this.childToSwapId
+    );
+    const indexToSwap2 = children.findIndex(
+      (item) => item.id === targedChildId
+    );
+
+    if (
+      indexToSwap1 === undefined ||
+      indexToSwap2 === undefined ||
+      indexToSwap1 === -1 ||
+      indexToSwap2 === -1 ||
+      indexToSwap1 === indexToSwap2
+    ) {
+      return;
+    }
+
+    [children[indexToSwap1], children[indexToSwap2]] = [
+      children[indexToSwap2],
+      children[indexToSwap1]
+    ];
   },
   removeChild(id) {
     const targetIndex = this.children?.findIndex((item) => item.id === id);
@@ -73,11 +112,17 @@ const SHARED_COLOR_ITEM_PART: Partial<ColorItem> = {
 };
 
 const mainColorItem = reactive({
-  ...SHARED_COLOR_ITEM_PART,
+  ...COLOR_ITEM_TEMPLATE,
   id: getters.getColorItemId(),
   depth: 0,
   children: reactive([]),
   removeSelf() {
+    // do nothing
+  },
+  suggestSwap() {
+    // do nothing
+  },
+  acceptSwap() {
     // do nothing
   }
 } as ColorItem);
