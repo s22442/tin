@@ -1,0 +1,28 @@
+:root {
+  --color-primary: #333;
+  --color-secondary: #ccc;
+  --color-shadow: #0008;
+  --transition-duration: 200ms;
+  --gradient-bg: linear-gradient(300deg, #6e72fc 0%, #ad1deb 75%) center / cover
+    no-repeat fixed;
+  --img-width: min(90vw, 132vh);
+  --img-bg-size: var(--img-width) auto;
+
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+
+  font-size: 16px;
+
+  @media (min-width: 1000px) {
+    font-size: 18px;
+  }
+
+  @media (min-width: 1400px) {
+    font-size: 20px;
+  }
+}
