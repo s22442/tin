@@ -12,6 +12,6 @@ export default defineConfig({
       },
     ],
   },
-  base: "/",
+  base: "/tin/zjazd6/vue/dist/",
   clearScreen: false,
 });
